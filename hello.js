@@ -33,6 +33,13 @@ let  db = client.db('onedb');
 
 })
 
+// app.set('template', path.join(__dirname, './template'));
+app.set('view engine', 'pug');
+
+app.get('/', function (req, res) {
+  res.render('index', { title: 'Hey', message: 'Hello there!' })
+})
+
 
 
 
