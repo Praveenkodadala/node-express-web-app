@@ -44,44 +44,66 @@ db.stories.find()
 
 
 
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 
-var app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+https://express-validator.github.io/docs/check-api.html
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+kodad@DESKTOP-HVGBUFF MINGW64 ~/OneDrive/Desktop/test/node (master)
+$ node hello.js
+express-validator: requires to express-validator/check are deprecated.You should just use require("express-validator") instead.
+express-validator: requires to express-validator/filter are deprecated.You should just use require("express-validator") instead.
+express-validator: sanitize(), sanitizeBody() and other sanitization-only middlewares have been deprecated.
+Please use check(), body() and others instead, which must offer the same API, and more.
+(node:6180) DeprecationWarning: current URL string parser is deprecated, and will be removed in a future version. To use the new parser, pass option { useNewUrlParser: true } to MongoClient.co
+nnect.
+(node:6180) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pas
+s option { useUnifiedTopology: true } to the MongoClient constructor.
+server at 3000
+connected to db
+GET /catalog/author/create 304 2083.527 ms - -
+GET /catalog/author/create 304 2083.527 ms - -
+GET /stylesheets/style.css 404 13.336 ms - 160
+GET /stylesheets/style.css 404 13.336 ms - 160
+GET /stylesheets/style.css 404 0.765 ms - 160
+GET /stylesheets/style.css 404 0.765 ms - 160
+POST /catalog/author/create 302 155.579 ms - 124
+POST /catalog/author/create 302 155.579 ms - 124
+GET /catalog/author/5e4aa8ea404da618249a16a6 200 334.208 ms - 1494
+GET /catalog/author/5e4aa8ea404da618249a16a6 200 334.208 ms - 1494
+GET /stylesheets/style.css 404 1.584 ms - 160
+GET /stylesheets/style.css 404 1.584 ms - 160
+GET /stylesheets/style.css 404 0.852 ms - 160
+GET /stylesheets/style.css 404 0.852 ms - 160
 
-module.exports = app;
+kodad@DESKTOP-HVGBUFF MINGW64 ~/OneDrive/Desktop/test/node (master)
+$ mongo
+MongoDB shell version v4.2.1
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("861c2019-209f-4c4b-a1c7-29da1e8fe3e0") }
+MongoDB server version: 4.2.1
+show dbs
+action         0.000GB
+admin          0.000GB
+config         0.000GB
+local          0.000GB
+mylib          0.000GB
+myproject      0.000GB
+onedb          0.000GB
+server         0.000GB
+shopping       0.000GB
+test           0.000GB
+testmyproject  0.000GB
+use onedb
+switched to db onedb
+show collections
+authors
+stories
+db.authors.find();
+{ "_id" : ObjectId("5e47b4cf8bed7727489c37af"), "stories" : [ ], "name" : "Bob", "__v" : 0 }
+{ "_id" : ObjectId("5e4aa73690de74010c559e64"), "first_name" : "blabla", "date_of_birth" : ISODate("1994-12-10T00:00:00Z"), "__v" : 0 }
+{ "_id" : ObjectId("5e4aa8ea404da618249a16a6"), "first_name" : "hellolasjdflajdf", "date_of_birth" : ISODate("1994-10-19T00:00:00Z"), "__v" : 0 }
